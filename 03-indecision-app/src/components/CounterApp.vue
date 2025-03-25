@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { useCounter } from '@/composables/useCounter'
 
-// interface Props {
-//   value: number
-// }
+interface Props {
+  value: number
+}
 
-// const props = defineProps<Props>()
+const props = defineProps<Props>()
 
-const { counter, squareCounter } = useCounter()
+const { counter, squareCounter } = useCounter(props.value)
 
 // import { computed, ref } from 'vue'
 
@@ -23,7 +23,7 @@ const { counter, squareCounter } = useCounter()
 <template>
   <section>
     <h3>Counter: {{ counter }}</h3>
-    <h3>Square: {{ squareCounter }}</h3>
+    <h3 data-testid="square-label">Square: {{ squareCounter }}</h3>
 
     <div>
       <button class="btn" @click="counter++">+1</button>
