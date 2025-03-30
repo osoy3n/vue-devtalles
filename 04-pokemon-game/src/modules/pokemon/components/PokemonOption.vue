@@ -1,0 +1,19 @@
+<script setup lang="ts"></script>
+
+<template>
+  <section class="mt-5">
+    <ul>
+      <li>Pokemon 1</li>
+      <li>Pokemon 2</li>
+      <li>Pokemon 3</li>
+      <li>Pokemon 4</li>
+    </ul>
+  </section>
+</template>
+
+<style scoped>
+@reference "tailwindcss";
+li {
+  @apply bg-white shadow-md p-3 m-2 rounded-sm cursor-pointer w-40 text-center transition-all hover:bg-gray-100;
+}
+</style>
