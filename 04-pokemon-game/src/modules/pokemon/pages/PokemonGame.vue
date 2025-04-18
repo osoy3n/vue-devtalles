@@ -4,7 +4,8 @@ import PokemonPicture from '../components/PokemonPicture.vue'
 import { usePokemonGame } from '../composables/usePokemonGame'
 import { GameStatus } from '../interfaces'
 
-const { randomPokemon, isLoading, gameStatus, pokemonOptions } = usePokemonGame()
+const { gameStatus, isLoading, pokemonOptions, randomPokemon, getNextRound, checkAnswer } =
+  usePokemonGame()
 </script>
 
 <template>
@@ -18,7 +19,15 @@ const { randomPokemon, isLoading, gameStatus, pokemonOptions } = usePokemonGame(
 
   <section v-else class="flex flex-col items-center justify-center w-screen h-screen">
     <h1 class="text-2xl m-5">¿Quién es este Pokemon</h1>
-    <h3 class="text-2xl m-5">{{ randomPokemon.name }}</h3>
+    <div class="h-12">
+      <button
+        v-if="gameStatus !== GameStatus.Playing"
+        @click="getNextRound()"
+        class="capitalize cursor-pointer bg-blue-500 text-white rounded-lg p-2 hover:bg-blue-600 transition-colors duration-300"
+      >
+        Nuevo Pokemon
+      </button>
+    </div>
 
     <!-- Pokemon Picture -->
     <PokemonPicture
@@ -27,6 +36,11 @@ const { randomPokemon, isLoading, gameStatus, pokemonOptions } = usePokemonGame(
     />
 
     <!-- Pokemon Options -->
-    <PokemonOption :options="pokemonOptions" />
+    <PokemonOption
+      :options="pokemonOptions"
+      :block-selection="gameStatus !== GameStatus.Playing"
+      :correct-answer="randomPokemon.id"
+      @selected-option="checkAnswer"
+    />
   </section>
 </template>
