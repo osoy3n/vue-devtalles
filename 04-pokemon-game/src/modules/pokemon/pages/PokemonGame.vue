@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PokemonOption from '../components/PokemonOption.vue'
+import PokemonOptions from '../components/PokemonOptions.vue'
 import PokemonPicture from '../components/PokemonPicture.vue'
 import { usePokemonGame } from '../composables/usePokemonGame'
 import { GameStatus } from '../interfaces'
@@ -36,7 +36,7 @@ const { gameStatus, isLoading, pokemonOptions, randomPokemon, getNextRound, chec
     />
 
     <!-- Pokemon Options -->
-    <PokemonOption
+    <PokemonOptions
       :options="pokemonOptions"
       :block-selection="gameStatus !== GameStatus.Playing"
       :correct-answer="randomPokemon.id"
